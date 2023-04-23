@@ -50,7 +50,7 @@ function onInputChange(e){
 function makeCountryList(data){
     const listMarkup = data.map(({ name, flags }) => {
         return `<li class="country-list__item">
-        <img class="country-list__img" src="${flags.svg}" alt="flag of ${name.official}"  style="height: 30px; width: 30px" />
+        <img class="country-list__img" src="${flags.svg}" alt="flag of ${name.official}"  width="40" height="30" />
         <p class="country-list__text">${name.official}</p>
       </li>`;
     }).join('');
@@ -61,7 +61,7 @@ function makeCountryList(data){
 function makeCoutryInfo(data) {
     const infoMarkup = data.map(({ name, capital, population, flags, languages }) => {
     return `<div class="country__flag">
-        <img class="country__img" src="${flags.svg}" alt="flag of ${name.official}" style="height: 30px; width: 30px">
+        <img class="country__img" src="${flags.svg}" alt="flag of ${name.official}" width="40" height="30">
         <p class="country__name">${name.official}</p>
     </div>
     <ul class="country__info">

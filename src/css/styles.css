@@ -22,3 +22,7 @@ body {
 ul{
   list-style: none;
 }
+
+img{
+  display: inline-block;
+}
