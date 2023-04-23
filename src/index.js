@@ -29,9 +29,9 @@ function onInputChange(e){
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
             return;
         } else if (data.length > 2 && data.length) {
-            countryList.innerHTML = makeCountryList(data);
+             makeCountryList(data);
         } else if (data.length === 1) {
-            countryInfo.innerHTML = makeCoutryInfo(data);
+            makeCoutryInfo(data);
         } else if (data.status === 404) {
             console.log(data)
             Notiflix.Notify.failure('Oops, there is no country with that name')
@@ -44,17 +44,18 @@ function onInputChange(e){
 }
 
 function makeCountryList(data){
-    return data.map(({ name, flags }) => {
+    const listMarkup = data.map(({ name, flags }) => {
       `<li class="country-list__item">
         <img class="country-list__img" src="${flags.svg}" alt="flag" />
         <p class="country-list__text">${name.official}</p>
       </li>`;
     }).join('');
 //   return countryList.insertAdjacentHTML('beforeend', markup);
+return countryList.innerHTML = listMarkup;
 }
 
 function makeCoutryInfo(data) {
-    return data.map(({ name, capital, population, flags, languages }) => {
+    const infoMarkup = data.map(({ name, capital, population, flags, languages }) => {
     `<div class="country__flag">
         <img class="country__img" src="${flags.svg}" alt="flag">
         <p class="country__name">${name.official}</p>
@@ -72,6 +73,7 @@ function makeCoutryInfo(data) {
     </ul>`;
     }).join('');
     // return countryInfo.insertAdjacentHTML('beforeend', markup);
+    return countryInfo.innerHTML = infoMarkup;
 }
 
 function clearHTML() {
