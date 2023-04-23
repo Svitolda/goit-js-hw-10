@@ -50,7 +50,7 @@ function makeCountryList(data){
         <p class="country-list__text">${name.official}</p>
       </li>`;
     }).join('');
-//   return refs.countryList.insertAdjacentHTML('beforeend', markup);
+//   return countryList.insertAdjacentHTML('beforeend', markup);
 }
 
 function makeCoutryInfo(data) {
@@ -71,6 +71,7 @@ function makeCoutryInfo(data) {
         </li>
     </ul>`;
     }).join('');
+    // return countryInfo.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearHTML() {
