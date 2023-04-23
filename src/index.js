@@ -17,18 +17,21 @@ inputEl.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 function onInputChange(e){
     e.preventDefault();
     name = e.target.value.trim();
-    clearHTML()
+    // clearHTML()
     // console.log(name);
 
     if (!name) {
         Notiflix.Notify.warning('Please enter country name');
+        clearHTML();
+        return;
     }
+     
 
     fetchCountries(name).then(data => {
         if (data.length > 10) {
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
-            return;
-        } else if (data.length > 2 && data.length) {
+            // return;
+        } else if (data.length > 2 && data.length <= 10) {
              makeCountryList(data);
         } else if (data.length === 1) {
             makeCoutryInfo(data);
@@ -45,19 +48,19 @@ function onInputChange(e){
 
 function makeCountryList(data){
     const listMarkup = data.map(({ name, flags }) => {
-      `<li class="country-list__item">
-        <img class="country-list__img" src="${flags.svg}" alt="flag" />
+        return `<li class="country-list__item">
+        <img class="country-list__img" src="${flags.svg}" alt="flag of ${name.official}"  style="height: 30px; width: 30px" />
         <p class="country-list__text">${name.official}</p>
       </li>`;
     }).join('');
 //   return countryList.insertAdjacentHTML('beforeend', markup);
-return countryList.innerHTML = listMarkup;
+ countryList.innerHTML = listMarkup;
 }
 
 function makeCoutryInfo(data) {
     const infoMarkup = data.map(({ name, capital, population, flags, languages }) => {
-    `<div class="country__flag">
-        <img class="country__img" src="${flags.svg}" alt="flag">
+    return `<div class="country__flag">
+        <img class="country__img" src="${flags.svg}" alt="flag of ${name.official}" style="height: 30px; width: 30px">
         <p class="country__name">${name.official}</p>
     </div>
     <ul class="country__info">
@@ -73,7 +76,7 @@ function makeCoutryInfo(data) {
     </ul>`;
     }).join('');
     // return countryInfo.insertAdjacentHTML('beforeend', markup);
-    return countryInfo.innerHTML = infoMarkup;
+     countryInfo.innerHTML = infoMarkup;
 }
 
 function clearHTML() {
