@@ -38,6 +38,9 @@ function onInputChange(e){
         }
     })
     .catch(error => {error});
+    // .finally(()=> {
+    //     inputEl.reset();
+    // })
 }
 
 function makeCountryList(data){
